@@ -1,0 +1,28 @@
+A. Choice of System for Periodic Task Scheduling:
+
+For scheduling periodic tasks such as downloading a list of ISINs every 24 hours, I would choose Celery with Redis or RabbitMQ as the message broker. Celery is a distributed task queue that allows you to run tasks asynchronously and periodically.
+
+Reasons for Choosing Celery:
+
+Reliability: Celery is widely used in production environments and is known for its reliability. It ensures that tasks are executed as expected, even in high-load situations.
+Scalability: Celery is highly scalable and can handle a large number of tasks concurrently. It supports distributed task execution across multiple worker nodes, making it suitable for scaling out as the workload increases.
+Periodic Task Support: Celery provides built-in support for scheduling periodic tasks, making it easy to define tasks that need to be executed at regular intervals, such as downloading ISINs every 24 hours.
+Integration: Celery integrates well with Django and Flask, allowing seamless integration of asynchronous task execution into web applications built with these frameworks.
+Issues and Recommendations for Scaling:
+While Celery is reliable and scalable, there are some considerations for scaling in production:
+
+Message Broker Scalability: The choice of message broker (Redis or RabbitMQ) should be made carefully to ensure it can handle the message throughput as the workload scales.
+Worker Scalability: Adding more worker nodes may be necessary to handle increased task load. Monitoring and auto-scaling mechanisms can help manage worker nodes dynamically based on workload.
+Task Optimization: Optimizing task execution time and resource utilization can improve scalability. This may involve optimizing database queries, reducing external dependencies, and parallelizing tasks where possible.
+For large-scale production environments, adopting a microservices architecture and utilizing cloud-based managed services for task queues and message brokers can further enhance scalability and reliability.
+
+B. Choosing Between Flask and Django:
+
+Use Flask When:
+Microservices: Flask is lightweight and suitable for building microservices or small-scale applications where flexibility and simplicity are priorities.
+Customization: Flask allows more flexibility and customization compared to Django. It's a good choice for projects with unique requirements or specific architectural preferences.
+API Development: Flask is often preferred for building RESTful APIs due to its lightweight nature and simplicity.
+Use Django When:
+Rapid Development: Django provides a full-featured framework with built-in functionalities like ORM, admin interface, authentication, and templating, allowing for rapid development of complex web applications.
+Batteries Included: Django comes with many built-in features and utilities, reducing the need for third-party libraries and making it a good choice for projects that need to get up and running quickly.
+Monolithic Applications: Django is well-suited for building monolithic applications with integrated components like authentication, database management, and user management.
